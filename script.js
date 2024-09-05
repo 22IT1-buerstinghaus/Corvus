@@ -1,21 +1,3 @@
-// Credits: https://dribbble.com/shots/16771965-Sidebar-menu-dark-mode
-
-// dribble@rymasheuski
-
-
-// Preview with the link below.
-// https://cdpn.io/ilyasbilgihan/fullpage/BadPLRd
-
-// Please leave a comment if you like.
-
-
-
-//  twitter@ilyasbilgihan
-//   github@ilyasbilgihan
-// linkedin@ilyasbilgihan
-
-
-
 const sidebarToggleBtn = document.querySelector('#sidebar-toggle')
 const sidebar = document.querySelector('.sidebar')
 const toggle = document.querySelector('#toggle-check')
