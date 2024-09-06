@@ -17,7 +17,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return !$this->isLocked();
+        return ! $this->isLocked();
     }
 
     /**
@@ -95,7 +95,8 @@ class LoginRequest extends FormRequest
 
     private function isLocked(): bool
     {
-        $user = User::where('email',$this->only('email'))->first();
+        $user = User::where('email', $this->only('email'))->first();
+
         return $user->is_locked ?? false;
     }
 }
