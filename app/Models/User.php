@@ -36,7 +36,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereUpdatedAt($value)
  *
- * @property boolean $is_locked
+ * @property bool $is_locked
  *
  * @method static Builder|User whereIsLocked($value)
  *
