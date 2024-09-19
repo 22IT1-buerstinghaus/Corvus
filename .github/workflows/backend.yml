@@ -1,36 +1,34 @@
-name: Run PHPStan & Laravel Pint
+name: Run PHPStan in Laravel
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - develop
   pull_request:
+    branches:
+      - develop
 
 jobs:
-  build:
-    name: Build
+  phpstan:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      # Code aus dem Repository klonen
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.2'
+          extensions: intl, zip, mbstring
+          ini-values: post_max_size=256M, max_execution_time=300
+          coverage: none
 
-      - name: Cache Composer dependencies
-        uses: actions/cache@v4
-        with:
-          path: /tmp/composer-cache
-          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Install Composer Dependencies
-        uses: php-actions/composer@v6
-        with:
-          working_dir: "."
-
+      # PHPStan ausführen
       - name: Run PHPStan
-        run: php vendor/bin/phpstan analyse app --memory-limit=1G
-
-      - name: Run Laravel Pint
-        run: php ./vendor/bin/pint -v --test
+        run: |
+          vendor/bin/phpstan analyse --memory-limit=1G
