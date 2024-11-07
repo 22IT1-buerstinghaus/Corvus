@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CsvResource\Pages;
-use App\Filament\Resources\CsvResource\RelationManagers;
-use App\Models\Csv;
-use App\Models\Customer;
+use App\Filament\Resources\CounterConsumptionFilesResource\Pages;
+use App\Filament\Resources\CounterConsumptionFilesResource\RelationManagers;
+use App\Models\CounterConsumptionFiles;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CsvResource extends Resource
+class CounterConsumptionFilesResource extends Resource
 {
-    protected static ?string $model = Csv::class;
+    protected static ?string $model = CounterConsumptionFiles::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,14 +23,13 @@ class CsvResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('customer_id')
-                    ->label('Customer')
-                    ->options(function () {
-                        return Customer::all()->pluck('full_name', 'id');
-                    })
-                    ->required(),
+                Forms\Components\TextInput::make('counter_nr')
+                    ->numeric(),
                 Forms\Components\FileUpload::make('path')
-                    ->required()
+                    ->required(),
+                Forms\Components\DateTimePicker::make('date'),
+                Forms\Components\TextInput::make('meter_reading')
+                    ->numeric(),
             ]);
     }
 
@@ -39,15 +37,15 @@ class CsvResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('customer.full_name')
-                ->label('Customer Name'),
-                Tables\Columns\TextColumn::make('path')
-                    ->label('Download File')
-                    ->alignRight()
-                    ->formatStateUsing(function ($state) {
-                        return '<a href="' . asset('storage/' . $state) . '" target="_blank">Download</a>';
-                    })
-                    ->html(),
+                Tables\Columns\TextColumn::make('counter_nr')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('date')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('meter_reading')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -80,9 +78,9 @@ class CsvResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCsvs::route('/'),
-            'create' => Pages\CreateCsv::route('/create'),
-            'edit' => Pages\EditCsv::route('/{record}/edit'),
+            'index' => Pages\ListCounterConsumptionFiles::route('/'),
+            'create' => Pages\CreateCounterConsumptionFiles::route('/create'),
+            'edit' => Pages\EditCounterConsumptionFiles::route('/{record}/edit'),
         ];
     }
 }

@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('csvs', function (Blueprint $table) {
+        Schema::create('counter_consumption_files', function (Blueprint $table) {
             $table->id();
-            $table->integer('customer_id');
             $table->string('path');
+            $table->unsignedBigInteger('counter_nr')->nullable();
+            $table->timestamp('date')->nullable();
+            $table->bigInteger('meter_reading')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('csvs');
+        Schema::dropIfExists('counter_consumption_files');
     }
 };
