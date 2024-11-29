@@ -3,15 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CustomerResource\Pages;
-use App\Filament\Resources\CustomerResource\RelationManagers;
 use App\Models\Customer;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CustomerResource extends Resource
 {
@@ -19,8 +17,25 @@ class CustomerResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        $user = auth()->user();
+
+        if (! $user) {
+            return false;
+        }
+
+        /** @var User $user */
+        return $user->is_admin == true;
+    }
+
     public static function form(Form $form): Form
     {
+        $request = request();
+
+        $isInitial = $request->has('initial');
+        $userId = auth()->user() ? auth()->user()->id : null;
+
         return $form
             ->schema([
                 Forms\Components\TextInput::make('first_name')
@@ -29,6 +44,19 @@ class CustomerResource extends Resource
                 Forms\Components\TextInput::make('last_name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('user_id')
+                    ->label('User')
+                    ->options(
+                        User::query()
+                            ->where('is_admin', false)
+                            ->get()
+                            ->mapWithKeys(fn (User $user) => [$user->id => $user->name])
+                            ->toArray()
+                    )
+                    ->required()
+                    ->hidden($isInitial)
+                    ->default($isInitial ? $userId : null)
+                    ->disabled($isInitial),
                 Forms\Components\DatePicker::make('birth_date')
                     ->required(),
                 Forms\Components\TextInput::make('phone_number')
@@ -39,10 +67,7 @@ class CustomerResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('house_number')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('street')
+                Forms\Components\TextInput::make('country')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('city')
@@ -51,7 +76,10 @@ class CustomerResource extends Resource
                 Forms\Components\TextInput::make('zip_code')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('country')
+                Forms\Components\TextInput::make('street')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('house_number')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('IBAN')

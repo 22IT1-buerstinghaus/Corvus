@@ -6,6 +6,7 @@ namespace App\Models;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
@@ -40,6 +41,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|User whereIsLocked($value)
  * @property int $is_admin
  * @method static Builder|User whereIsAdmin($value)
+ * @property-read \App\Models\Customer|null $customer
  * @mixin Eloquent
  */
 class User extends Authenticatable
@@ -81,5 +83,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function customer(): HasOne
+    {
+        return $this->hasOne(Customer::class);
     }
 }

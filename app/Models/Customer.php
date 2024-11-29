@@ -42,6 +42,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereStreet($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereZipCode($value)
+ * @property int $user_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Customer whereUserId($value)
  * @mixin \Eloquent
  */
 class Customer extends Model
@@ -51,6 +53,7 @@ class Customer extends Model
     protected $fillable = [
         'first_name',
         'last_name',
+        'user_id',
         'birth_date',
         'phone_number',
         'email',
