@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
- *
- *
  * @property int $id
  * @property int $customer_id
  * @property string $path
@@ -18,24 +19,26 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $installation_date
  * @property string|null $mobile
  * @property string|null $phone
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles query()
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles whereCounterNr($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles whereCustomerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles whereHouseNr($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles whereInstallationDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles whereMobile($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles wherePath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles whereStreet($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerFiles whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ *
+ * @method static Builder|CustomerFiles newModelQuery()
+ * @method static Builder|CustomerFiles newQuery()
+ * @method static Builder|CustomerFiles query()
+ * @method static Builder|CustomerFiles whereCounterNr($value)
+ * @method static Builder|CustomerFiles whereCreatedAt($value)
+ * @method static Builder|CustomerFiles whereCustomerId($value)
+ * @method static Builder|CustomerFiles whereHouseNr($value)
+ * @method static Builder|CustomerFiles whereId($value)
+ * @method static Builder|CustomerFiles whereInstallationDate($value)
+ * @method static Builder|CustomerFiles whereMobile($value)
+ * @method static Builder|CustomerFiles whereName($value)
+ * @method static Builder|CustomerFiles wherePath($value)
+ * @method static Builder|CustomerFiles wherePhone($value)
+ * @method static Builder|CustomerFiles whereStreet($value)
+ * @method static Builder|CustomerFiles whereUpdatedAt($value)
+ *
+ * @mixin Eloquent
  */
 class CustomerFiles extends Model
 {

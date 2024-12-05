@@ -2,7 +2,6 @@
 
 namespace App\Filament\Pages;
 
-use App\Filament\Resources\CustomerResource\Pages\CreateCustomer;
 use App\Models\User;
 use Auth;
 use Filament\Pages\Page;
@@ -23,6 +22,7 @@ class CustomerDashboard extends Page
         if ($user->customer === null) {
             return redirect('/customer/customers/create?initial');
         }
+
         return null;
     }
 }

@@ -3,11 +3,10 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\CustomerDashboard;
-use App\Http\Middleware\CustomerMiddleware;
+use App\Filament\Resources\CustomerResource\Pages\CustomerProfile;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -36,6 +35,7 @@ class CustomerPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 CustomerDashboard::class,
+                CustomerProfile::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([

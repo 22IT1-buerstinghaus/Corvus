@@ -32,9 +32,19 @@ class CustomerResource extends Resource
     public static function form(Form $form): Form
     {
         $request = request();
-
         $isInitial = $request->has('initial');
-        $userId = auth()->user() ? auth()->user()->id : null;
+        $userId = null;
+        $mail = null;
+
+        $user = auth()->user();
+
+        if ($user) {
+            /**
+             * @var User $user
+             */
+            $userId = $user->id;
+            $mail = $user->email;
+        }
 
         return $form
             ->schema([
@@ -66,6 +76,7 @@ class CustomerResource extends Resource
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required()
+                    ->default($isInitial ? $mail : null)
                     ->maxLength(255),
                 Forms\Components\TextInput::make('country')
                     ->required()

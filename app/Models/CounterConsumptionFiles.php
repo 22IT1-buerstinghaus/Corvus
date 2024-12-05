@@ -2,30 +2,33 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
- * 
- *
  * @property int $id
  * @property string $path
  * @property int|null $counter_nr
  * @property string|null $date
  * @property int|null $meter_reading
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|CounterConsumptionFiles newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|CounterConsumptionFiles newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|CounterConsumptionFiles query()
- * @method static \Illuminate\Database\Eloquent\Builder|CounterConsumptionFiles whereCounterNr($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CounterConsumptionFiles whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CounterConsumptionFiles whereDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CounterConsumptionFiles whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CounterConsumptionFiles whereMeterReading($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CounterConsumptionFiles wherePath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CounterConsumptionFiles whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ *
+ * @method static Builder|CounterConsumptionFiles newModelQuery()
+ * @method static Builder|CounterConsumptionFiles newQuery()
+ * @method static Builder|CounterConsumptionFiles query()
+ * @method static Builder|CounterConsumptionFiles whereCounterNr($value)
+ * @method static Builder|CounterConsumptionFiles whereCreatedAt($value)
+ * @method static Builder|CounterConsumptionFiles whereDate($value)
+ * @method static Builder|CounterConsumptionFiles whereId($value)
+ * @method static Builder|CounterConsumptionFiles whereMeterReading($value)
+ * @method static Builder|CounterConsumptionFiles wherePath($value)
+ * @method static Builder|CounterConsumptionFiles whereUpdatedAt($value)
+ *
+ * @mixin Eloquent
  */
 class CounterConsumptionFiles extends Model
 {

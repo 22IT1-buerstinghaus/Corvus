@@ -14,9 +14,8 @@ class AdminMiddleware extends Authenticate
      * Handle an incoming request.
      *
      * @param Request $request
-     * @param Closure $next
      * @param string ...$guards
-     * @return mixed
+     *
      * @throws AuthorizationException
      */
     public function handle($request, Closure $next, ...$guards): mixed

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
- *
- *
  * @property int $id
  * @property string $first_name
  * @property string $last_name
@@ -21,30 +22,34 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $country
  * @property string $IBAN
  * @property string $BIC
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read mixed $full_name
- * @method static \Illuminate\Database\Eloquent\Builder|Customer newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Customer newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Customer query()
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereBIC($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereBirthDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereCity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereCountry($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereFirstName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereHouseNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereIBAN($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereLastName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer wherePhoneNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereStreet($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereZipCode($value)
+ *
+ * @method static Builder|Customer newModelQuery()
+ * @method static Builder|Customer newQuery()
+ * @method static Builder|Customer query()
+ * @method static Builder|Customer whereBIC($value)
+ * @method static Builder|Customer whereBirthDate($value)
+ * @method static Builder|Customer whereCity($value)
+ * @method static Builder|Customer whereCountry($value)
+ * @method static Builder|Customer whereCreatedAt($value)
+ * @method static Builder|Customer whereEmail($value)
+ * @method static Builder|Customer whereFirstName($value)
+ * @method static Builder|Customer whereHouseNumber($value)
+ * @method static Builder|Customer whereIBAN($value)
+ * @method static Builder|Customer whereId($value)
+ * @method static Builder|Customer whereLastName($value)
+ * @method static Builder|Customer wherePhoneNumber($value)
+ * @method static Builder|Customer whereStreet($value)
+ * @method static Builder|Customer whereUpdatedAt($value)
+ * @method static Builder|Customer whereZipCode($value)
+ *
  * @property int $user_id
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereUserId($value)
- * @mixin \Eloquent
+ *
+ * @method static Builder|Customer whereUserId($value)
+ *
+ * @mixin Eloquent
  */
 class Customer extends Model
 {
@@ -70,5 +75,4 @@ class Customer extends Model
     {
         return "{$this->first_name} {$this->last_name}";
     }
-
 }
