@@ -17,7 +17,7 @@ class EditCustomer extends EditRecord
          * @var User $user
          */
         $user = auth()->user();
-        if (!$user->is_admin) {
+        if (! $user->is_admin) {
             return [];
         }
 

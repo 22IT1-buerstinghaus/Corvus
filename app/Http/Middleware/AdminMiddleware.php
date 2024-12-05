@@ -13,14 +13,14 @@ class AdminMiddleware extends Authenticate
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
-     * @param string ...$guards
+     * @param  Request  $request
+     * @param  string  ...$guards
      *
      * @throws AuthorizationException
      */
     public function handle($request, Closure $next, ...$guards): mixed
     {
-        if (!Auth::check() || !Auth::user()->is_admin) {
+        if (! Auth::check() || ! Auth::user()->is_admin) {
             Auth::logout();
             throw new AuthorizationException('You are not authorized to access this page.', '403');
         }

@@ -21,16 +21,26 @@ class CustomerProfile extends Page implements HasForms
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
     protected static string $resource = CustomerResource::class;
+
     protected static string $view = 'filament.pages.customer-profile';
+
     public Customer $customer;
+
     public ?array $data = [];
 
     public function mount(): void
     {
         $user = Auth::user();
 
-        $this->customer = $user->customer()->firstOrFail();
+        /**
+         * @var Customer $customer
+         */
+        $customer = $user->customer()->firstOrFail();
+        $this->customer = $customer;
 
+        /**
+         * @phpstan-ignore-next-line
+         */
         $this->form->fill(
             $this->customer->toArray()
         );
@@ -87,6 +97,9 @@ class CustomerProfile extends Page implements HasForms
     public function update(): void
     {
         $this->customer->update(
+            /**
+             * @phpstan-ignore-next-line
+             */
             $this->form->getState()
         );
 
