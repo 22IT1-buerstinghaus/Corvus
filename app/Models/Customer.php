@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
+ * @property int $user_id
  * @property string $first_name
  * @property string $last_name
  * @property string $birth_date
@@ -24,8 +25,9 @@ use Illuminate\Support\Carbon;
  * @property string $BIC
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read mixed $full_name
+ * @property-read string $full_name
  *
+ * @method static \Database\Factories\CustomerFactory factory($count = null, $state = [])
  * @method static Builder|Customer newModelQuery()
  * @method static Builder|Customer newQuery()
  * @method static Builder|Customer query()
@@ -43,11 +45,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Customer wherePhoneNumber($value)
  * @method static Builder|Customer whereStreet($value)
  * @method static Builder|Customer whereUpdatedAt($value)
- * @method static Builder|Customer whereZipCode($value)
- *
- * @property int $user_id
- *
  * @method static Builder|Customer whereUserId($value)
+ * @method static Builder|Customer whereZipCode($value)
  *
  * @mixin Eloquent
  */

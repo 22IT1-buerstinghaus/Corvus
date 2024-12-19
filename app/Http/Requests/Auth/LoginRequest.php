@@ -81,7 +81,7 @@ class LoginRequest extends FormRequest
         $user = User::where('email', $email)->first();
 
         if ($user) {
-            $user->is_locked = true;
+            $user->is_locked = 1; // true
             $user->save();
         }
     }
